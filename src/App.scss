@@ -1,7 +1,12 @@
-$background: gray;
-$textcolour: white;
+$background: goldenrod;
+$textcolour: black;
 
 body {
     background-color: $background;
     color: $textcolour;
+    font-weight: 500;
+}
+
+.link-text{
+    color: goldenrod;
 }

@@ -6,41 +6,42 @@ import data from './data.jpg';
 
 
 class View extends React.Component {
-  
-  likePost() {
-    this.setState(() => ({
-      likes: this.props.state.likes + 1
-    }))
+constructor(props) {
+  super(props)
+  this.state = {
+    id: 0,
+    username: "",
+    text: "y",
+    likes: 0
   }
-  
+}
 
   buildPost() {
     return this.props.posts.map((spam) => (
       <Card key={spam.id}
-        bg="light"
+        bg="warning"
         style={{ width: '22rem' }}
         className="mb-2"
         border="dark"
-        text="muted"
+        text="dark"
       >
         <Card.Body>
           <Card.Title>{spam.username}</Card.Title>
           <Card.Text>{spam.text}</Card.Text>
-          <img src={data} alt="Person resembling but not legally related to Data from Star Trek, which is the DataRetentionCorp mascot." height="20px" width="20px"></img>
-          {"  "}{spam.likes} data
           
-          <Button onClick={this.likePost()} >
+          
+          <Button variant="dark" onClick={() => this.props.likesIncrease(spam.id)} >
           Like
           </Button>
-          
+          {" "}
+          <img src={data} alt="Person resembling but not legally related to Data from the Star Trek, which is the DataRetentionCorp mascot." height="20px" width="20px"></img>
+          {" "}{spam.likes} data
           </Card.Body>
       </Card>
     )
     )
   }
-
-
-
+     
   render() {
     return (
       <>

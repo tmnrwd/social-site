@@ -15,7 +15,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 
-
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -33,8 +32,10 @@ class App extends React.Component {
         likes: 0
       }
       ],
+      example: {id: 1, likes: 0}
 
     }
+    this.likesIncrease = this.likesIncrease.bind(this);
   }
 
   addNewPost(id, username, text, likes) {
@@ -44,7 +45,16 @@ class App extends React.Component {
     }))
   }
 
-
+  likesIncrease(id) {
+    this.setState((state) => ({
+      posts: 
+      state.posts.map(
+        eachPost =>
+        eachPost.id === id ?
+        { ...eachPost, likes: eachPost.likes +1}: eachPost
+      )
+    }))
+  }
 
   render() {
     return (
@@ -52,12 +62,12 @@ class App extends React.Component {
         <Router>
 
           <Navbar bg="light" expand="md">
-            <Navbar.Brand>HappyFun Social Data Site!</Navbar.Brand>
+            <Navbar.Brand><p>HappyFun Social Data Site!</p></Navbar.Brand>
             <Navbar.Toggle aira-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Nav.Link><Link to="/feed">Feed of Posts Data</Link></Nav.Link>
-                <Nav.Link><Link to="/new-post">Place Data into New Post</Link></Nav.Link>
+                <Nav.Link><Link to="/feed"><div className="link-text">Feed of Posts Data</div></Link></Nav.Link>
+                <Nav.Link><Link to="/new-post"><p  className="link-text">Place Data into New Post</p></Link></Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -67,7 +77,7 @@ class App extends React.Component {
 
               <Route path="/feed">
                 <Card>
-                  <View posts={this.state.posts} />
+                  <View posts={this.state.posts} likesIncrease={this.likesIncrease} />
                 </Card>
               </Route>
 

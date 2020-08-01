@@ -9,9 +9,9 @@ class Add extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      id: 0,
-      username: "enter your user name. Mervyn, insert GDPR statement here",
-      text: "enter your valuable post data here, you are not being tracked in any way",
+      id: 3,
+      username: "",
+      text: "",
       likes: 0
     }
 
@@ -47,13 +47,14 @@ class Add extends React.Component {
     this.props.onSubmit(this.state.id, this.state.username, this.state.text, this.state.likes);
     toastr.success("You posted a post!")
     this.setState({
-      id: 0,
-      username: "enter your user name. Mervyn, insert GDPR statement here",
-      text: "enter your valuable post data here, you are not being tracked in any way",
+      id: this.state.id + 1,
+      username: "",
+      text: "",
       likes: 0
     })
   }
 
+//need to change id in submitHandler after each post is posted.
 
   render() {
     return (
@@ -61,12 +62,12 @@ class Add extends React.Component {
       <br></br>
         <Form onSubmit={(e) => this.submitHandler(e)}>
           <Form.Group controlId="username">
-            <Form.Label>User Name</Form.Label>
+            <Form.Label>enter your user name. Mervyn, insert GDPR statement here</Form.Label>
             <Form.Control name="username" type="text" value={this.state.username} onChange={(e) => this.handleChange(e)} />
           </Form.Group>
 
           <Form.Group controlId="text">
-            <Form.Label>Post Content</Form.Label>
+            <Form.Label>enter your valuable post content data here, you are not being tracked in any wa</Form.Label>
             <Form.Control name="text" type="text" value={this.state.text} onChange={(e) => this.handleChange(e)} />
           </Form.Group>
 
