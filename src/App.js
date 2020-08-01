@@ -13,7 +13,7 @@ import {
 } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-
+import error from './error.jpg';
 
 class App extends React.Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class App extends React.Component {
         likes: 0
       }
       ],
-      example: {id: 1, likes: 0}
+      example: { id: 1, likes: 0 }
 
     }
     this.likesIncrease = this.likesIncrease.bind(this);
@@ -47,12 +47,12 @@ class App extends React.Component {
 
   likesIncrease(id) {
     this.setState((state) => ({
-      posts: 
-      state.posts.map(
-        eachPost =>
-        eachPost.id === id ?
-        { ...eachPost, likes: eachPost.likes +1}: eachPost
-      )
+      posts:
+        state.posts.map(
+          eachPost =>
+            eachPost.id === id ?
+              { ...eachPost, likes: eachPost.likes + 1 } : eachPost
+        )
     }))
   }
 
@@ -66,8 +66,8 @@ class App extends React.Component {
             <Navbar.Toggle aira-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Nav.Link><Link to="/feed"><div className="link-text">Feed of Posts Data</div></Link></Nav.Link>
-                <Nav.Link><Link to="/new-post"><p  className="link-text">Place Data into New Post</p></Link></Nav.Link>
+                <Nav.Link><Link to="/"><div className="link-text">Feed of Posts Data</div></Link></Nav.Link>
+                <Nav.Link><Link to="/new-post"><p className="link-text">Place Data into New Post</p></Link></Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -75,7 +75,7 @@ class App extends React.Component {
           <Container>
             <Switch>
 
-              <Route path="/feed">
+              <Route exact path="/">
                 <Card>
                   <View posts={this.state.posts} likesIncrease={this.likesIncrease} />
                 </Card>
@@ -83,6 +83,11 @@ class App extends React.Component {
 
               <Route path="/new-post">
                 <Add onSubmit={(id, username, text, likes) => this.addNewPost(id, username, text, likes)} />
+              </Route>
+
+              <Route path="/">
+              <div className="error-text text-center">Error: 404 not found</div>
+              <img src={error} alt="Jean-Luc Picard from the Star Trek, performing a facepalm."></img>
               </Route>
 
             </Switch>
