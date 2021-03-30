@@ -87,7 +87,8 @@ class App extends React.Component {
 
               <Route path="/">
               <div className="error-text text-center">Error: 404 not found</div>
-              <img src={error} alt="Jean-Luc Picard from the Star Trek, performing a facepalm."></img>
+              <img src={error} alt="Majestic sea eagle, looking disapproving with a big beak, on an ice background."></img>
+              <p>Majestic error image is provided by usplash.com user Birger Strahl!</p>
               </Route>
 
             </Switch>
